@@ -1,13 +1,13 @@
 import axios from "axios"
 import { API_URL } from "../../constant"
-import { CreateResponse } from "../../types/global.type"
+import { CreateRequest, CreateResponse } from "../../types/global.type"
 import { AppThunk, RootState } from "../../types/redux.type"
 import { saveData } from "../reducer/global"
 
 const currentState = (state: RootState) => state.global;
 
 export const postCreate = (
-    data: any, 
+    data: CreateRequest, 
     setLoading:(loading:boolean)=>void,
     handleClear: ()=> void,
 ) : AppThunk => async(dispatch, getState) =>{
@@ -37,7 +37,7 @@ export const postCreate = (
 
 export const putData = (
     setLoading:(loading:boolean)=>void,
-    data: any,
+    data: CreateRequest,
     id: string,
     handlerBack: ()=> void
 ) : AppThunk => async(dispatch, getState) =>{

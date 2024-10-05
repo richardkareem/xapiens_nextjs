@@ -1,7 +1,6 @@
 'use client'
 
 import { store } from '@/redux/store'
-import { AppProps } from 'next/app'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'

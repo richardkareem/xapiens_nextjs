@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import ModalParent from "@/components/ModalParent";
 import { deleteData, putData } from "@/redux/action/crud";
 import { saveData } from "@/redux/reducer/global";
+import { CreateRequest } from "@/types/global.type";
 import { useAppDispatch, useAppSelector } from "@/types/redux.type";
 import { useEffect, useState } from "react";
 
@@ -21,7 +22,7 @@ export default function Home() {
     const datasLs = localStorage.getItem('datas')
     if(datasLs){
       if(datas.length === 0){
-        let newDatas = JSON.parse(datasLs)
+        const newDatas = JSON.parse(datasLs)
         dispatch(saveData(newDatas))
       }
     }
@@ -39,7 +40,7 @@ export default function Home() {
 
  
 
-  const onEditSave = (data: any, id: string) =>{
+  const onEditSave = (data: CreateRequest, id: string) =>{
     const handleCloseModal = () =>{
       const modal = document.getElementById('modal_edit') as HTMLDialogElement
       modal?.close()
