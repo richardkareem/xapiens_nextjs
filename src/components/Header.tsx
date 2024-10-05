@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import ModalParent from './ModalParent'
 import { useAppDispatch } from '@/types/redux.type'
 import { postCreate } from '@/redux/action/crud'
+import { XCircleIcon } from '@heroicons/react/16/solid'
 const Header = () => {
     const router = useRouter();
     const dispatch = useAppDispatch()
@@ -15,6 +16,7 @@ const Header = () => {
       name: "",
       job: "",
     })
+    const dataEmpty = form.name === "" || form.job === ""
     const onLogout = () =>{
       if(window){
         localStorage.clear()
@@ -29,6 +31,16 @@ const Header = () => {
       const modal = 
       document.getElementById('modal_add') as HTMLDialogElement
       dispatch(postCreate(form, setLoading,handleClear))
+      modal.close()
+    }
+    const handleCloseModal = () =>{
+      const modal = 
+      document.getElementById('modal_add') as HTMLDialogElement
+      modal.close()
+    }
+    const handleCloseModalExit = () =>{
+      const modal = 
+      document.getElementById('modal_exit') as HTMLDialogElement
       modal.close()
     }
   return (
@@ -50,7 +62,7 @@ const Header = () => {
         <Modal 
             id='modal_exit'
             onAcc={onLogout}
-            onReject={()=>{}}
+            onReject={handleCloseModalExit}
             title='Do You Want to Exit?'
             desc='close or exit'
         />
@@ -58,7 +70,10 @@ const Header = () => {
             id='modal_add'
         >
           <>
-            <p className='font-bold text-xl'>Create User</p>
+            <div className='flex justify-between'>
+             <p className='font-bold text-xl'>Create User</p>
+             <XCircleIcon onClick={handleCloseModal} className='w-8 h-8' />
+            </div>
             <input 
             value={form.name}
             onChange={(e)=> setForm(prev => {
@@ -68,7 +83,7 @@ const Header = () => {
               }
             })}
             type="text" 
-            placeholder="Type here" 
+            placeholder="Name, ex: John Doe" 
             className="input input-bordered w-full max-w-xs mt-4" />
             <input 
              onChange={(e)=> setForm(prev => {
@@ -80,9 +95,12 @@ const Header = () => {
             value={form.job}
             disabled={loading}
             type="text" 
-            placeholder="Type here" 
+            placeholder="Job, ex: Front End Developer" 
             className="input input-bordered w-full max-w-xs mt-4" />
-            <button onClick={onSave} className="btn mt-4">Save</button>
+              <p className="font-medium text-sm mt-4">Esc for close modal</p>
+            <button 
+            disabled={dataEmpty}
+            onClick={onSave} className="btn mt-4">Save</button>
           </>
         </ModalParent>
     </div>
