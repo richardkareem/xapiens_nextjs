@@ -14,8 +14,8 @@ yarn dev / npm run dev
 ```
 setelah itu akan running dan berhasil
 
-untuk membukanya di https://localhost:3000
+untuk membukanya di localhost: https://localhost:3000
 
-untuk running yang sudah saya deploy di vercel ada [disini](https://xapiens-nextjs-q5jfsm1hq-richards-projects-937db622.vercel.app/)
+untuk running yang sudah saya deploy di vercel ada [disini](https://xapiens-nextjs.vercel.app)
 
 
